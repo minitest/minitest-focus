@@ -1,0 +1,7 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+lib/minitest/focus.rb
+test/minitest/test_focus.rb
