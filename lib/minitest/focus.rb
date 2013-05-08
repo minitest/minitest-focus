@@ -1,9 +1,11 @@
 require "minitest/unit"
 
-class MiniTest::Unit::TestCase # :nodoc:
-  class Focus                  # :nodoc:
-    VERSION = "1.0.0"          # :nodoc:
+class Minitest::Test    # :nodoc:
+  class Focus           # :nodoc:
+    VERSION = "1.0.0"   # :nodoc:
   end
+
+  @@filtered_names = [] # :nodoc:
 
   ##
   # Focus on the next test defined. Cumulative. Equivalent to
@@ -17,14 +19,19 @@ class MiniTest::Unit::TestCase # :nodoc:
   #   end
 
   def self.focus
-    opts = MiniTest::Unit.runner.options
     meta = class << self; self; end
 
-    opts[:names] ||= []
-
     meta.send :define_method, :method_added do |name|
-      opts[:names] << name.to_s
-      opts[:filter] = "/^(#{opts[:names].join "|"})$/"
+      @@filtered_names << "#{self}##{name}"
+      filter = "/^(#{@@filtered_names.join "|"})$/"
+
+      index = ARGV.index("-n")
+      unless index then
+        index = ARGV.size
+        ARGV << "-n"
+      end
+
+      ARGV[index + 1] = filter
 
       meta.send :remove_method, :method_added
     end
