@@ -4,4 +4,6 @@ Manifest.txt
 README.txt
 Rakefile
 lib/minitest/focus.rb
+lib/minitest/focus4.rb
+lib/minitest/focus5.rb
 test/minitest/test_focus.rb

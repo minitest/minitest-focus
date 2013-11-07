@@ -1,7 +1,9 @@
 require "minitest/autorun"
 require "minitest/focus"
 
-class MyTest1 < Minitest::Test
+test_cls = defined?(Minitest::Test) ? Minitest::Test : MiniTest::Unit::TestCase
+
+class MyTest1 < test_cls
          def test_fail;            flunk; end
   focus; def test_method;          pass;  end
          def test_method_edgecase; flunk; end
