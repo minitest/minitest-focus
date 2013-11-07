@@ -1,3 +1,10 @@
+=== 1.1.0 / 2013-11-07
+
+* 1 major enhancement:
+
+  * Minitest 5 compatibility.
+    * Still works on minitest 4.
+
 === 1.0.0 / 2013-01-07
 
 * 1 major enhancement
