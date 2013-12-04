@@ -21,7 +21,7 @@ class Minitest::Test    # :nodoc:
 
     meta.send :define_method, :method_added do |name|
       @@filtered_names << "#{self}##{name}"
-      filter = "/^(#{@@filtered_names.join "|"})$/"
+      filter = "/^(#{@@filtered_names.map { |f| Regexp.escape f }.join "|"})$/"
 
       index = ARGV.index("-n")
       unless index then
