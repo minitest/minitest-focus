@@ -18,7 +18,7 @@ class MiniTest::Unit::TestCase # :nodoc:
 
     meta.send :define_method, :method_added do |name|
       opts[:names] << name.to_s
-      opts[:filter] = "/^(#{opts[:names].join "|"})$/"
+      opts[:filter] = "/^(#{Regexp.union(opts[:names]).source})$/"
 
       meta.send :remove_method, :method_added
     end

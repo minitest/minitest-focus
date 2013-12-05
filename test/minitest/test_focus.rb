@@ -10,7 +10,8 @@ class MyTest1 < test_cls
 end
 
 describe "MyTest2" do
-         it "is ignored"     do flunk end
-  focus; it "does something" do pass  end
-         it "bombs"          do flunk end
+         it "is ignored"            do flunk end
+  focus; it "does something"        do pass  end
+         it "bombs"                 do flunk end
+  focus; it "has non-word ['chars'" do pass  end # Will raise invalid RegExp unless correctly escaped
 end
