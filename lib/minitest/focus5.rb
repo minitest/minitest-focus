@@ -24,12 +24,15 @@ class Minitest::Test    # :nodoc:
       filter = "/^(#{Regexp.union(@@filtered_names).source})$/"
 
       index = ARGV.index("-n")
-      unless index then
-        index = ARGV.size
-        ARGV << "-n"
+
+      if index then
+        warn "NOTE: Found `-n <regexp>` arg. This breaks under Rake::TestTask"
       end
 
-      ARGV[index + 1] = filter
+      index = ARGV.index { |arg| arg =~ /^-n/ }
+      ARGV.delete_at index if index
+
+      ARGV << "-n=#{filter}"
 
       meta.send :remove_method, :method_added
     end
