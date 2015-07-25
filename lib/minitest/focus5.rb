@@ -1,6 +1,6 @@
 class Minitest::Test    # :nodoc:
   class Focus           # :nodoc:
-    VERSION = "1.1.1"   # :nodoc:
+    VERSION = "1.1.2"   # :nodoc:
   end
 
   @@filtered_names = [] # :nodoc:
