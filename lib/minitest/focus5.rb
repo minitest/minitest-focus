@@ -7,18 +7,10 @@ class Minitest::Test    # :nodoc:
 
   def self.add_to_filter name
     @@filtered_names << "#{self}##{name}"
-    filter = "/^(#{Regexp.union(@@filtered_names).source})$/"
+  end
 
-    index = ARGV.index("-n")
-
-    if index then
-      warn "NOTE: Found `-n <regexp>` arg. This breaks under Rake::TestTask"
-    end
-
-    index = ARGV.index { |arg| arg =~ /^-n/ }
-    ARGV.delete_at index if index
-
-    ARGV << "-n=#{filter}"
+  def self.filtered_names
+    @@filtered_names
   end
 
   ##
