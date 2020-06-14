@@ -2,6 +2,7 @@
 
 module Minitest
   def self.plugin_focus_options(_opts, options)
+    return unless Minitest::Test.respond_to? :filtered_names
     return if Minitest::Test.filtered_names.empty?
 
     index = ARGV.index { |arg| arg =~ /^-n/ || arg =~ /^--name/ }
