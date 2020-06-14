@@ -1,3 +1,9 @@
+=== 1.2.1 / 2020-06-14
+
+* 1 bug fix:
+
+  * Prevent a crash if the gem is installed but never required. (dazuma)
+
 === 1.2.0 / 2020-05-15
 
 * 1 major enhancement:
