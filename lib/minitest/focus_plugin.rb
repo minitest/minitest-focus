@@ -11,6 +11,8 @@ module Minitest
       ARGV.delete_at index
     end
 
-    options[:filter] = "/^(#{Regexp.union(Minitest::Test.filtered_names).source})$/"
+    re = "/^(#{Regexp.union(Minitest::Test.filtered_names).source})$/"
+
+    options[:filter] = re
   end
 end

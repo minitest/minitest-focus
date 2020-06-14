@@ -23,17 +23,26 @@ Inspired by https://github.com/seattlerb/minitest/issues/213
     require "minitest/focus"
 
     class MyTest < MiniTest::Unit::TestCase
-      def test_unrelated; ...; end
+      def test_unrelated; ...; end       # will NOT run
+
+      focus def test_method2; ...;  end  # will run (direct--preferred)
 
       focus
-      def test_method; ...;  end # only this one will run
+      def test_method; ...;  end         # will run (indirect)
 
-      def test_method_edgecase; ...; end
+      def test_method_edgecase; ...; end # will NOT run
+    end
+
+    # or, with spec-style:
+
+    describe "MyTest2" do
+      focus; it "does something"       do pass end
+      focus  it("does something else") {  pass   } # block precedence needs {}
     end
 
 == REQUIREMENTS:
 
-* minitest 4.3.4+
+* minitest 5+
 
 == INSTALL:
 
