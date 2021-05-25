@@ -1,3 +1,5 @@
+require "minitest/test"
+
 class Minitest::Test    # :nodoc:
   class Focus           # :nodoc:
     VERSION = "1.3.0"   # :nodoc:
