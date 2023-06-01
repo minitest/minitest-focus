@@ -1,18 +1,27 @@
 # frozen_string_literal: true
 
 module Minitest
-  def self.plugin_focus_options(_opts, options)
+  def self.plugin_focus_options opts, options
+    opts.on "--no-focus", "Disable `focus` calls in tests." do |n|
+      @nofocus = true
+    end
+  end
+
+  def self.plugin_focus_init options # :nodoc:
     return unless Minitest::Test.respond_to? :filtered_names
     return if Minitest::Test.filtered_names.empty?
 
-    index = ARGV.index { |arg| arg =~ /^-n/ || arg =~ /^--name/ }
-    if index
-      warn 'Ignoring -n / --name, using `focus` filters instead'
-      ARGV.delete_at index
+    if options[:filter] then
+      order = %w[ `focus` --name ]
+      a, b = @nofocus ? order : order.reverse
+      extra = " Use --no-focus to override." unless @nofocus
+      warn "Ignoring #{a} filters in favor of #{b} filters.#{extra}"
+      warn ""
     end
 
-    re = "/^(#{Regexp.union(Minitest::Test.filtered_names).source})$/"
+    return if @nofocus
 
+    re = "/^(#{Regexp.union(Minitest::Test.filtered_names).source})$/"
     options[:filter] = re
   end
 end
