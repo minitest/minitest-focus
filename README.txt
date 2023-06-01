@@ -7,7 +7,7 @@ rdoc :: http://docs.seattlerb.org/minitest-focus
 
 Allows you to focus on a few tests with ease without having to use
 command-line arguments. Good for tools like guard that don't have
-enough brains to understand test output. Cf. ZenTest's autotest (an
+enough brains to understand test output. Cf. minitest-autotest (an
 example of a test runner with strong testing logic).
 
 Inspired by https://github.com/seattlerb/minitest/issues/213
@@ -16,13 +16,15 @@ Inspired by https://github.com/seattlerb/minitest/issues/213
 
 * `focus` class method allows you to specify that the next test
   defined should be run.
+* Use --no-focus to temporarily disable or override with --name
+  arguments.
 
 == SYNOPSIS:
 
     require "minitest/autorun"
     require "minitest/focus"
 
-    class MyTest < MiniTest::Unit::TestCase
+    class MyTest < Minitest::Test
       def test_unrelated; ...; end       # will NOT run
 
       focus def test_method2; ...;  end  # will run (direct--preferred)
