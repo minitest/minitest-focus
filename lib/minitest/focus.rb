@@ -2,7 +2,7 @@ require "minitest/test"
 
 class Minitest::Test    # :nodoc:
   class Focus           # :nodoc:
-    VERSION = "1.3.1"   # :nodoc:
+    VERSION = "1.4.0"   # :nodoc:
   end
 
   @@filtered_names = [] # :nodoc:
