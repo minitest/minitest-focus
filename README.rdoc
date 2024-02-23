@@ -40,6 +40,19 @@ Inspired by https://github.com/seattlerb/minitest/issues/213
     describe "MyTest2" do
       focus; it "does something"       do pass end
       focus  it("does something else") {  pass   } # block precedence needs {}
+
+      focus
+      describe "Group" do
+        it "should run this"           do pass end
+        it "will run this too"         do pass end
+        describe "Nesting" do
+          it "even this"               do pass end
+        end
+      end
+
+      focus describe("Group") {
+        it "or even this"              do pass end
+      }
     end
 
 == REQUIREMENTS:
