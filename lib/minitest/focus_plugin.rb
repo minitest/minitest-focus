@@ -11,7 +11,7 @@ module Minitest
     return unless Minitest::Test.respond_to? :filtered_names
     return if Minitest::Test.filtered_names.empty?
 
-    if options[:filter] then
+    if options[:include] || options[:filter] then
       order = %w[ `focus` --name ]
       a, b = @nofocus ? order : order.reverse
       extra = " Use --no-focus to override." unless @nofocus
@@ -22,6 +22,6 @@ module Minitest
     return if @nofocus
 
     re = "/^(#{Regexp.union(Minitest::Test.filtered_names).source})$/"
-    options[:filter] = re
+    options[:include] = options[:filter] = re
   end
 end

@@ -24,6 +24,8 @@ Inspired by https://github.com/seattlerb/minitest/issues/213
     require "minitest/autorun"
     require "minitest/focus"
 
+    Minitest.load :focus # for MT6+, push up to test_helper as needed
+
     class MyTest < Minitest::Test
       def test_unrelated; ...; end       # will NOT run
 
