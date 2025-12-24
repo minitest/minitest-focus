@@ -1,5 +1,4 @@
 require "minitest/autorun"
-Minitest.load :focus if Minitest.respond_to? :load # MT6
 require "minitest/focus"
 
 class MyTest1 < Minitest::Test

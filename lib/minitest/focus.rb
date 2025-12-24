@@ -1,5 +1,7 @@
 require "minitest/test"
 
+Minitest.load(:focus) if Minitest.respond_to? :load # MT6
+
 class Minitest::Test    # :nodoc:
   class Focus           # :nodoc:
     VERSION = "1.4.0"   # :nodoc:
