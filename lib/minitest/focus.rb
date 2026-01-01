@@ -4,7 +4,7 @@ Minitest.load :focus if Minitest.respond_to? :load # MT6
 
 class Minitest::Test    # :nodoc:
   class Focus           # :nodoc:
-    VERSION = "1.4.0"   # :nodoc:
+    VERSION = "1.4.1"   # :nodoc:
   end
 
   @@filtered_names = [] # :nodoc:
